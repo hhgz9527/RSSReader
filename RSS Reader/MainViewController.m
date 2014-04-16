@@ -78,7 +78,7 @@
     }
 }
 
--(void)jiexi:(NSString *)url{
+-(void)parse:(NSString *)url{
     [self deleteCoreData];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         _party = [RssParser loadParty:url];
@@ -135,7 +135,7 @@
             break;
         case 1:
             //解析
-            [self jiexi:textField.text];
+            [self parse:textField.text];
             break;
         default:
             break;
