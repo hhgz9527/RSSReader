@@ -32,19 +32,11 @@
     self.view.backgroundColor = [UIColor whiteColor];
     NSString *str = [NSString stringWithFormat:@"%@",[result objectAtIndex:_i]];
 
-
-    UILabel *content_label = [[UILabel alloc] init];
-    CGSize size = [str sizeWithFont:content_label.font constrainedToSize:CGSizeMake(content_label.frame.size.width, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
-    content_label.frame = CGRectMake(0, 0, size.width, size.height);
-    content_label.numberOfLines = 0;
-//    content_label.lineBreakMode = NSLineBreakByCharWrapping;
-    content_label.text = [NSString stringWithFormat:@"%@",[result objectAtIndex:_i]];
+    //才发现webview直接可以解析html，现在可以正常显示文本了，不过尺寸有点问题，最下方有一行字在屏幕外面
+    UIWebView *webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
+    [webview loadHTMLString:str baseURL:nil];
+    [self.view addSubview:webview];
     
-    UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
-    scroll.contentSize = CGSizeMake(size.width, size.height);
-    [scroll addSubview:content_label];
-    [self.view addSubview:scroll];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,7 +51,6 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry" inManagedObjectContext:appDelegate.managedObjectContext];
     //    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO];
     //    NSArray *arr = [[NSArray alloc] initWithObjects:sort, nil];
-    
     //创建取回数据请求
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     //指定结果的排序
