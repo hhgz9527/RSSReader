@@ -25,10 +25,10 @@
     NSMutableArray *entries;
     
     NSMutableArray *result;
-    
 }
 
 @property(nonatomic,retain)Party *party;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 
 @end

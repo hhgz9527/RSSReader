@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-MagicalRecord.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-gtm-oauth2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4289422325894534A49F03BE</key>
+		<key>29E9A0988AD04ADB90A01155</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>86AE8A1EA0D3473FB1BE9317</key>
+		<key>310713A6F85C43F2833FBC68</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8A21205742B14E2181909EDA</key>
+		<key>60234A0898A147D896AD2F83</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E94E55ADDF524E10BBDA8FBE</key>
+		<key>8CFFDEDFA7F945329C8D4049</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>925C1D01AB7940078363F177</key>
 		<dict>
 			<key>primary</key>
 			<true/>

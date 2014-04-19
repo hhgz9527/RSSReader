@@ -8,6 +8,10 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+
+
+static NSString * const StoreName = @"Entry.sqlite";
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -20,53 +24,32 @@
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
     //设置navbar的背景
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbackcolor"] forBarMetrics:UIBarMetricsDefault];
-    
     self.window.rootViewController = nav;
+    
+    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:StoreName];
+//    [self fileManager];
     
     [self.window makeKeyAndVisible];
     return YES;
 }
 
--(NSManagedObjectModel *)managedObjectModel{
-    if (_managedObjectModel != nil) {
-        return _managedObjectModel;
-    }
-    _managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+- (void)fileManager{
+    NSFileManager *file = [NSFileManager defaultManager];
+    NSURL *storeURL = [NSPersistentStore MR_urlForStoreName:StoreName];
     
-    return _managedObjectModel;
+    if (![file fileExistsAtPath:[storeURL path]]) {
+        NSString *defaultsStorePath = [[NSBundle mainBundle] pathForResource:[StoreName stringByDeletingLastPathComponent] ofType:[StoreName pathExtension]];
+        
+        if (defaultsStorePath) {
+            NSError *error;
+            BOOL success = [file copyItemAtPath:defaultsStorePath toPath:[storeURL path] error:&error];
+            if (!success) {
+                NSLog(@"失败");
+            }
+        }
+    }
 }
 
--(NSPersistentStoreCoordinator *)persistentStoreCoordinator{
-    if (_persistentStoreCoordinator != nil) {
-        return  _persistentStoreCoordinator;
-    }
-    //得到路径
-    NSString *docu = [NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES) lastObject];
-    NSLog(@"路径：：：%@",docu);
-    //CoreData是建立在SQLite之上的，数据库名称需要与Model相同
-    
-    NSURL *url=[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    NSURL *url2 = [url URLByAppendingPathComponent:@"LocalModel.sqlite"];
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSError *error = nil;
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url2 options:nil error:&error]) {
-        NSLog(@"Error :%@",error);
-        abort();
-    }
-    return _persistentStoreCoordinator;
-}
-
--(NSManagedObjectContext *)managedObjectContext{
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
-    }
-    NSPersistentStoreCoordinator *coord = [self persistentStoreCoordinator];
-    if (coord != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [_managedObjectContext setPersistentStoreCoordinator:coord];
-    }
-    return _managedObjectContext;
-}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -93,24 +76,8 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    [self save];
+    [MagicalRecord cleanUp];
 }
 
 
--(void)save{
-    NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil)
-    {
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
-        {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        }
-        else
-            NSLog( @"数据成功插入");
-    }
-}
 @end

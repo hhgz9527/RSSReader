@@ -7,23 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <CoreData/CoreData.h>
+#import <MagicalRecord.h>
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-//数据模型对象
-@property(nonatomic,strong)NSManagedObjectModel *managedObjectModel;
-//数据上下文
-@property(nonatomic,strong)NSManagedObjectContext *managedObjectContext;
-//持久存储区
-@property(nonatomic,strong)NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
-//初始化Core Data使用的数据库
--(NSPersistentStoreCoordinator *)persistentStoreCoordinator;
-//初始赋值函数
--(NSManagedObjectModel *)managedObjectModel;
--(NSManagedObjectContext *)managedObjectContext;
--(void)save;
+////数据模型对象
+//@property(nonatomic,strong)NSManagedObjectModel *managedObjectModel;
+////数据上下文
+//@property(nonatomic,strong)NSManagedObjectContext *managedObjectContext;
+////持久存储区
+//@property(nonatomic,strong)NSPersistentStoreCoordinator *persistentStoreCoordinator;
+//
+////初始化Core Data使用的数据库
+//-(NSPersistentStoreCoordinator *)persistentStoreCoordinator;
+////初始赋值函数
+//-(NSManagedObjectModel *)managedObjectModel;
+//-(NSManagedObjectContext *)managedObjectContext;
+//-(void)save;
 
 @end
