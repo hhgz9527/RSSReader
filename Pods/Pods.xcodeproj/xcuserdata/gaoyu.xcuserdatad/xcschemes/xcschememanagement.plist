@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-MSDynamicsDrawerViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-MagicalRecord.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>29E9A0988AD04ADB90A01155</key>
+		<key>1B4E93B6D47347088E882A8A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>310713A6F85C43F2833FBC68</key>
+		<key>2A1AA17E8A584B8FAC1F5A28</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>60234A0898A147D896AD2F83</key>
+		<key>72EC66D21D3E45DE8FF6FDB5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8CFFDEDFA7F945329C8D4049</key>
+		<key>A4E3D6C16D414E40894EF2C6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>925C1D01AB7940078363F177</key>
+		<key>CB6D5AEDEFB84F79922A5692</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DDBFB27FBA61495DA16BB6F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
