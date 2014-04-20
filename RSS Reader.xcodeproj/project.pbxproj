@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		424B985E82D440F7957E3221 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C56CF025E64C68B5B2524A /* libPods.a */; };
 		732D3F911902E91C00796972 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 732D3F901902E91C00796972 /* README.md */; };
+		73CA3EEC19042F2B009C1424 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CA3EEB19042F2B009C1424 /* MenuViewController.m */; };
 		73F1A4C418FED72A000971F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F1A4C318FED72A000971F9 /* Foundation.framework */; };
 		73F1A4C618FED72A000971F9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F1A4C518FED72A000971F9 /* CoreGraphics.framework */; };
 		73F1A4C818FED72A000971F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F1A4C718FED72A000971F9 /* UIKit.framework */; };
@@ -45,6 +46,8 @@
 /* Begin PBXFileReference section */
 		63C56CF025E64C68B5B2524A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		732D3F901902E91C00796972 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		73CA3EEA19042F2B009C1424 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		73CA3EEB19042F2B009C1424 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		73F1A4C018FED72A000971F9 /* RSS Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RSS Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73F1A4C318FED72A000971F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		73F1A4C518FED72A000971F9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -150,6 +153,8 @@
 				73F1A50518FED76D000971F9 /* MainViewController.m */,
 				73F1A50618FED76D000971F9 /* ContentViewController.h */,
 				73F1A50718FED76D000971F9 /* ContentViewController.m */,
+				73CA3EEA19042F2B009C1424 /* MenuViewController.h */,
+				73CA3EEB19042F2B009C1424 /* MenuViewController.m */,
 				73F1A4D518FED72A000971F9 /* Images.xcassets */,
 				73F1A4CA18FED72A000971F9 /* Supporting Files */,
 			);
@@ -350,6 +355,7 @@
 				73F1A50018FED757000971F9 /* Party.m in Sources */,
 				73F1A4D018FED72A000971F9 /* main.m in Sources */,
 				73F1A50118FED757000971F9 /* RssParser.m in Sources */,
+				73CA3EEC19042F2B009C1424 /* MenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

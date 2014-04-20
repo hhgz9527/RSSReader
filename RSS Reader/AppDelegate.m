@@ -8,7 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
-
+#import "MenuViewController.h"
+#import "RightViewController.h"
 
 static NSString * const StoreName = @"Entry.sqlite";
 
@@ -16,40 +17,84 @@ static NSString * const StoreName = @"Entry.sqlite";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.dynamicsDrawerViewController = [[MSDynamicsDrawerViewController alloc] init];
+    self.dynamicsDrawerViewController.delegate = self;
+    
+    
+#if !defined(STORYBOARD)
+    MenuViewController *menuViewController = [[MenuViewController alloc] init];
+#endif
+    menuViewController.dynamicsDrawerViewController = self.dynamicsDrawerViewController;
+    [self.dynamicsDrawerViewController setDrawerViewController:menuViewController forDirection:MSDynamicsDrawerDirectionLeft];
+    
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
     self.window.backgroundColor = [UIColor whiteColor];
     MainViewController *main = [[MainViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
     //设置navbar的背景
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbackcolor"] forBarMetrics:UIBarMetricsDefault];
-    self.window.rootViewController = nav;
+    self.window.rootViewController = _dynamicsDrawerViewController;
     
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:StoreName];
-//    [self fileManager];
     
     [self.window makeKeyAndVisible];
+    
+    [self.window addSubview:self.windowBackground];
+    [self.window sendSubviewToBack:self.windowBackground];
     return YES;
 }
 
-- (void)fileManager{
-    NSFileManager *file = [NSFileManager defaultManager];
-    NSURL *storeURL = [NSPersistentStore MR_urlForStoreName:StoreName];
-    
-    if (![file fileExistsAtPath:[storeURL path]]) {
-        NSString *defaultsStorePath = [[NSBundle mainBundle] pathForResource:[StoreName stringByDeletingLastPathComponent] ofType:[StoreName pathExtension]];
-        
-        if (defaultsStorePath) {
-            NSError *error;
-            BOOL success = [file copyItemAtPath:defaultsStorePath toPath:[storeURL path] error:&error];
-            if (!success) {
-                NSLog(@"失败");
-            }
-        }
+- (UIImageView *)windowBackground
+{
+    if (!_windowBackground) {
+        _windowBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navbackcolor"]];
+    }
+    return _windowBackground;
+}
+
+- (NSString *)descriptionForPaneState:(MSDynamicsDrawerPaneState)paneState
+{
+    switch (paneState) {
+        case MSDynamicsDrawerPaneStateOpen:
+            return @"MSDynamicsDrawerPaneStateOpen";
+        case MSDynamicsDrawerPaneStateClosed:
+            return @"MSDynamicsDrawerPaneStateClosed";
+        case MSDynamicsDrawerPaneStateOpenWide:
+            return @"MSDynamicsDrawerPaneStateOpenWide";
+        default:
+            return nil;
     }
 }
 
+- (NSString *)descriptionForDirection:(MSDynamicsDrawerDirection)direction
+{
+    switch (direction) {
+        case MSDynamicsDrawerDirectionTop:
+            return @"MSDynamicsDrawerDirectionTop";
+        case MSDynamicsDrawerDirectionLeft:
+            return @"MSDynamicsDrawerDirectionLeft";
+        case MSDynamicsDrawerDirectionBottom:
+            return @"MSDynamicsDrawerDirectionBottom";
+        case MSDynamicsDrawerDirectionRight:
+            return @"MSDynamicsDrawerDirectionRight";
+        default:
+            return nil;
+    }
+}
+
+#pragma mark - MSDynamicsDrawerViewControllerDelegate
+
+- (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController mayUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction
+{
+    NSLog(@"Drawer view controller may update to state `%@` for direction `%@`", [self descriptionForPaneState:paneState], [self descriptionForDirection:direction]);
+}
+
+- (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController didUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction
+{
+    NSLog(@"Drawer view controller did update to state `%@` for direction `%@`", [self descriptionForPaneState:paneState], [self descriptionForDirection:direction]);
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
