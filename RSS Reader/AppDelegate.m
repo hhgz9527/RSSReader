@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "MenuViewController.h"
-#import "RightViewController.h"
+
 
 static NSString * const StoreName = @"Entry.sqlite";
 
