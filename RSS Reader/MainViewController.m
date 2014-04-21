@@ -47,25 +47,25 @@
     
     
     
-//    NSArray *arr = [Entry MR_findAll];
-//    if (arr != nil) {
-//        for (NSManagedObjectContext *context in arr) {
-//            [title_arr addObject:[context valueForKey:@"title"]];
-//        }
-//        [table reloadData];
-//    }
+    NSArray *arr = [Entry MR_findAll];
+    if (arr != nil) {
+        for (NSManagedObjectContext *context in arr) {
+            [title_arr addObject:[context valueForKey:@"title"]];
+        }
+        [table reloadData];
+    }
 
 }
 
 -(void)readed{
     //查看存储的数据
-//    NSArray *arr = [Entry MR_findAllSortedBy:@"title" ascending:NO];
-//    NSLog(@"%@",arr);
-//    for (NSManagedObjectContext *context in arr) {
-//        NSLog(@"%@",[context valueForKey:@"title"]);
-//    }
-    [self deleteTitleinCoreData];
-    [table reloadData];
+    NSArray *arr = [Entry MR_findAllSortedBy:@"title" ascending:NO];
+    NSLog(@"%@",arr);
+    for (NSManagedObjectContext *context in arr) {
+        NSLog(@"%@",[context valueForKey:@"title"]);
+    }
+//    [self deleteTitleinCoreData];
+//    [table reloadData];
 }
 
 -(void)parse:(NSString *)url{
