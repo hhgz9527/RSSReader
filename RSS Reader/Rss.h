@@ -10,8 +10,9 @@
 
 @interface Rss : NSObject
 
-@property(nonatomic,copy)NSString *title;
-@property(nonatomic,copy)NSString *img;
-@property(nonatomic,copy)NSString *content;
+@property(nonatomic, copy) NSString *name;
+@property(nonatomic, copy) NSString *title;
+@property(nonatomic, copy) NSString *img;
+@property(nonatomic, copy) NSString *content;
 
 @end

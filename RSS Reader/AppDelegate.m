@@ -20,7 +20,7 @@ static NSString * const StoreName = @"Entry.sqlite";
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     self.dynamicsDrawerViewController = [[MSDynamicsDrawerViewController alloc] init];
-
+    self.dynamicsDrawerViewController.delegate = self;
     MenuViewController *menuViewController = [[MenuViewController alloc] init];
     [self.dynamicsDrawerViewController setDrawerViewController:menuViewController forDirection:MSDynamicsDrawerDirectionLeft];
     MainViewController *main = [[MainViewController alloc] init];
@@ -35,19 +35,9 @@ static NSString * const StoreName = @"Entry.sqlite";
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:StoreName];
     
     [self.window makeKeyAndVisible];
-    
-//    [self.window addSubview:self.windowBackground];
-//    [self.window sendSubviewToBack:self.windowBackground];
     return YES;
 }
 
-- (UIImageView *)windowBackground
-{
-    if (!_windowBackground) {
-        _windowBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navbackcolor"]];
-    }
-    return _windowBackground;
-}
 
 - (NSString *)descriptionForPaneState:(MSDynamicsDrawerPaneState)paneState
 {
@@ -84,6 +74,7 @@ static NSString * const StoreName = @"Entry.sqlite";
 - (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController mayUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction
 {
     NSLog(@"Drawer view controller may update to state `%@` for direction `%@`", [self descriptionForPaneState:paneState], [self descriptionForDirection:direction]);
+    
 }
 
 - (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController didUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction

@@ -47,10 +47,9 @@
     for (GDataXMLElement *partyMember in arr) {
         NSString *title_str;
         NSString *content_str;
-       
+        
         NSArray *names = [partyMember elementsForName:@"title"];
         NSArray *contents = [partyMember elementsForName:@"content"];
-        
         if (names.count > 0) {
             GDataXMLElement *title = (GDataXMLElement *)[names objectAtIndex:0];
             title_str = title.stringValue;

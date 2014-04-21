@@ -15,5 +15,5 @@
 @property (nonatomic, retain) NSString * content;
 @property (nonatomic, retain) NSString * link;
 @property (nonatomic, retain) NSString * title;
-
+@property (nonatomic, retain) NSString * name;
 @end

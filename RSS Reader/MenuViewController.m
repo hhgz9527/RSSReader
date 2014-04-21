@@ -8,6 +8,8 @@
 
 #import "MenuViewController.h"
 #import "MainViewController.h"
+#import "Entry.h"
+
 @interface MenuViewController ()
 
 @end
@@ -32,6 +34,8 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,14 +64,13 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = @"123";
+    cell.textLabel.text = @"1";
     return cell;
 }
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    MainViewController *main = [[MainViewController alloc] init];
-    [self.navigationController pushViewController:main animated:YES];
+
 }
 
 /*

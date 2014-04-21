@@ -14,5 +14,6 @@
 @dynamic content;
 @dynamic link;
 @dynamic title;
+@dynamic name;
 
 @end
