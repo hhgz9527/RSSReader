@@ -43,17 +43,17 @@
     title_arr = [[NSMutableArray alloc] init];
     content_arr = [[NSMutableArray alloc] init];
     
-    appDelegate = [UIApplication sharedApplication].delegate;
+    appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     
     
-    NSArray *arr = [Entry MR_findAll];
-    if (arr != nil) {
-        for (NSManagedObjectContext *context in arr) {
-            [title_arr addObject:[context valueForKey:@"title"]];
-        }
-        [table reloadData];
-    }
+//    NSArray *arr = [Entry MR_findAll];
+//    if (arr != nil) {
+//        for (NSManagedObjectContext *context in arr) {
+//            [title_arr addObject:[context valueForKey:@"title"]];
+//        }
+//        [table reloadData];
+//    }
 
 }
 

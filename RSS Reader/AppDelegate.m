@@ -17,32 +17,27 @@ static NSString * const StoreName = @"Entry.sqlite";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.dynamicsDrawerViewController = [[MSDynamicsDrawerViewController alloc] init];
-    self.dynamicsDrawerViewController.delegate = self;
-    
-    
-#if !defined(STORYBOARD)
-    MenuViewController *menuViewController = [[MenuViewController alloc] init];
-#endif
-    menuViewController.dynamicsDrawerViewController = self.dynamicsDrawerViewController;
-    [self.dynamicsDrawerViewController setDrawerViewController:menuViewController forDirection:MSDynamicsDrawerDirectionLeft];
-    
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+
+    self.dynamicsDrawerViewController = [[MSDynamicsDrawerViewController alloc] init];
+
+    MenuViewController *menuViewController = [[MenuViewController alloc] init];
+    [self.dynamicsDrawerViewController setDrawerViewController:menuViewController forDirection:MSDynamicsDrawerDirectionLeft];
     MainViewController *main = [[MainViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
-    //设置navbar的背景
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbackcolor"] forBarMetrics:UIBarMetricsDefault];
+    self.dynamicsDrawerViewController.paneViewController = nav;
+
+    // Override point for customization after application launch.
+    self.window.backgroundColor = [UIColor whiteColor];
+
     self.window.rootViewController = _dynamicsDrawerViewController;
     
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:StoreName];
     
     [self.window makeKeyAndVisible];
     
-    [self.window addSubview:self.windowBackground];
-    [self.window sendSubviewToBack:self.windowBackground];
+//    [self.window addSubview:self.windowBackground];
+//    [self.window sendSubviewToBack:self.windowBackground];
     return YES;
 }
 
