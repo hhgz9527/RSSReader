@@ -7,8 +7,8 @@ RSSReader
 
 >使用到的第三方库：GData、MagicalRecord、MSDynamicsDrawerViewController
 
-#2014.4.16
-
+2014.4.16
+-------
 
 之前的玩坏了，重新上传个
 
