@@ -10,6 +10,8 @@
 #import <CoreData/CoreData.h>
 #import <MagicalRecord.h>
 #import <MSDynamicsDrawerViewController.h>
+#import "MenuViewController.h"
+
 @class MSDynamicsDrawerViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,MSDynamicsDrawerViewControllerDelegate>
@@ -17,5 +19,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong) MSDynamicsDrawerViewController *dynamicsDrawerViewController;
 @property (nonatomic, strong) UIImageView *windowBackground;
+@property (nonatomic, strong) MenuViewController *menuViewController;
+
 
 @end

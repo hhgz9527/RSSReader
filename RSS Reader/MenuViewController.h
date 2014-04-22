@@ -12,6 +12,6 @@
 @interface MenuViewController : UITableViewController
 
 @property (nonatomic, weak) MSDynamicsDrawerViewController *dynamicsDrawerViewController;
-
+@property (nonatomic, retain)NSString *str;
 
 @end

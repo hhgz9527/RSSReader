@@ -145,8 +145,8 @@
 		73F1A4C918FED72A000971F9 /* RSS Reader */ = {
 			isa = PBXGroup;
 			children = (
-				73F1A4F518FED74A000971F9 /* Model */,
 				73F1A4F218FED737000971F9 /* Resources */,
+				73F1A4F518FED74A000971F9 /* Model */,
 				73F1A4D218FED72A000971F9 /* AppDelegate.h */,
 				73F1A4D318FED72A000971F9 /* AppDelegate.m */,
 				73F1A50418FED76D000971F9 /* MainViewController.h */,

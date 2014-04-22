@@ -11,7 +11,7 @@
 #import "ContentViewController.h"
 #import "MenuViewController.h"
 
-
+NSMutableArray *name_arr;
 @interface MainViewController ()
 
 @end
@@ -46,25 +46,30 @@
     appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     
-    NSArray *arr = [Entry MR_findAll];
-    if (arr != nil) {
-        for (NSManagedObjectContext *context in arr) {
-            [title_arr addObject:[context valueForKey:@"title"]];
-        }
-        [table reloadData];
-    }
+    
+//    NSArray *arr = [Entry MR_findAll];
+//    if (arr != nil) {
+//        for (NSManagedObjectContext *context in arr) {
+//            [title_arr addObject:[context valueForKey:@"title"]];
+//        }
+//        [table reloadData];
+//    }
 
 }
 
+//方法名暂时取得，这个是leftBarButton的响应方法，用来各种测试的
 -(void)readed{
+    name_arr = [[NSMutableArray alloc] init];
     //查看存储的数据
-//    NSArray *arr = [Entry MR_findAllSortedBy:@"title" ascending:NO];
-//    NSLog(@"%@",arr);
-//    for (NSManagedObjectContext *context in arr) {
-//        NSLog(@"%@",[context valueForKey:@"title"]);
-//    }
-    [self deleteTitleinCoreData];
-    [table reloadData];
+    NSArray *arr = [Entry MR_findAll];
+    for (NSManagedObjectContext *context in arr) {
+        if ([context valueForKey:@"name"] != nil) {
+            NSLog(@"%@",[context valueForKey:@"name"]);
+            [name_arr addObject:[context valueForKey:@"name"]];
+        }
+    }
+//    [self deleteTitleinCoreData];
+//    [table reloadData];
 }
 
 -(void)parse:(NSString *)url{
@@ -87,6 +92,8 @@
                 entry.content = [NSString stringWithFormat:@"%@",[content_arr objectAtIndex:i]];
                 [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
             }
+            //将输入的博客地址，显示到左侧菜单栏上
+            [self readed];
         });
     });
 }
@@ -109,13 +116,15 @@
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-
+    Entry *entry = [Entry MR_createEntity];
     switch (buttonIndex) {
         case 0:
             break;
         case 1:
             //解析
             [self parse:textField.text];
+            entry.name = textField.text;
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
             break;
         default:
             break;

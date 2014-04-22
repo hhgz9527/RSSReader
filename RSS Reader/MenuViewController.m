@@ -10,6 +10,8 @@
 #import "MainViewController.h"
 #import "Entry.h"
 
+extern NSMutableArray *name_arr;
+
 @interface MenuViewController ()
 
 @end
@@ -34,7 +36,6 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
 
 }
 
@@ -53,8 +54,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
-    return 1;
+    return name_arr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -64,7 +64,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = @"1";
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",[name_arr objectAtIndex:indexPath.row]];
     return cell;
 }
 

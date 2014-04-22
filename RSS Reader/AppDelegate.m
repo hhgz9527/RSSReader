@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
-#import "MenuViewController.h"
 
 
 static NSString * const StoreName = @"Entry.sqlite";
@@ -21,8 +20,8 @@ static NSString * const StoreName = @"Entry.sqlite";
 
     self.dynamicsDrawerViewController = [[MSDynamicsDrawerViewController alloc] init];
     self.dynamicsDrawerViewController.delegate = self;
-    MenuViewController *menuViewController = [[MenuViewController alloc] init];
-    [self.dynamicsDrawerViewController setDrawerViewController:menuViewController forDirection:MSDynamicsDrawerDirectionLeft];
+    _menuViewController = [[MenuViewController alloc] init];
+    [self.dynamicsDrawerViewController setDrawerViewController:_menuViewController forDirection:MSDynamicsDrawerDirectionLeft];
     MainViewController *main = [[MainViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
     self.dynamicsDrawerViewController.paneViewController = nav;
@@ -74,7 +73,7 @@ static NSString * const StoreName = @"Entry.sqlite";
 - (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController mayUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction
 {
     NSLog(@"Drawer view controller may update to state `%@` for direction `%@`", [self descriptionForPaneState:paneState], [self descriptionForDirection:direction]);
-    
+    [_menuViewController.tableView reloadData];
 }
 
 - (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController didUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction

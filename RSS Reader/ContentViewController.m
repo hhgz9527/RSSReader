@@ -34,15 +34,23 @@
     
     //从CoreData中取得内容
     NSMutableArray *content_arr = [[NSMutableArray alloc] init];
-    NSArray *arr = [Entry MR_findAllSortedBy:@"content" ascending:NO];
-    for (NSManagedObjectContext *c in arr) {
-        [content_arr addObject:[c valueForKey:@"content"]];
-    }
-    NSString *str = [NSString stringWithFormat:@"%@",content_arr[_indexrow]];
-    //才发现webview直接可以解析html，现在可以正常显示文本了，不过尺寸有点问题，最下方有一行字在屏幕外面
-    UIWebView *webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
-    [webview loadHTMLString:str baseURL:nil];
+       UIWebView *webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
     [self.view addSubview:webview];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        NSArray *arr = [Entry MR_findAll];
+        for (NSManagedObjectContext *c in arr) {
+            [content_arr addObject:[c valueForKey:@"content"]];
+        }
+        NSString *str = [NSString stringWithFormat:@"%@",content_arr[_indexrow]];
+        //才发现webview直接可以解析html，现在可以正常显示文本了，不过尺寸有点问题，最下方有一行字在屏幕外面
+
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [webview loadHTMLString:str baseURL:nil];
+
+        });
+    });
+    
     
 }
 
